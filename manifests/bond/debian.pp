@@ -13,6 +13,7 @@ define network::bond::debian(
   $method    = undef,
   $family    = undef,
   $onboot    = undef,
+  $options   = undef,
 
   $mode             = undef,
   $miimon           = undef,
@@ -36,7 +37,7 @@ define network::bond::debian(
     'bond-xmit-hash-policy' => $xmit_hash_policy,
   }
 
-  $opts = compact_hash($raw)
+  $opts = merge($options, compact_hash($raw))
 
   network_config { $name:
     ensure    => $ensure,

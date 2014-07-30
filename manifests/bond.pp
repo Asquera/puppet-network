@@ -108,6 +108,11 @@
 #   - layer2+3
 #   - layer3+4
 #
+# [*options*]
+# `:options` provides an arbitrary passthrough for provider properties, so
+# that provider specific behavior doesn't clutter up the main type but still
+# allows for more powerful actions to be taken.
+#
 # == Examples
 #
 #     network::bond { 'bond0':
@@ -129,6 +134,7 @@ define network::bond(
   $method    = undef,
   $family    = undef,
   $onboot    = undef,
+  $options   = {},
 
   $mode             = "active-backup",
   $miimon           = "100",
@@ -157,6 +163,7 @@ define network::bond(
         method    => $method,
         family    => $family,
         onboot    => $onboot,
+        options   => $options,
 
         mode             => $mode,
         miimon           => $miimon,
@@ -179,6 +186,7 @@ define network::bond(
         family    => $family,
         method    => $method,
         onboot    => $onboot,
+        options   => $options,
 
         mode             => $mode,
         miimon           => $miimon,
